@@ -65,8 +65,8 @@ widgets:
   clock:
     type: "yasb.clock.ClockWidget"
     options:
-      label: "{%H:%M}"
-      label_alt: "{%a %d %b %H:%M}"
+      label: "{%a %d %b %H:%M}"
+      label_alt: "{%H:%M}"
       callbacks:
         on_left: "toggle_label"
         on_right: "toggle_calendar"
