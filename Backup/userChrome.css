@@ -1,0 +1,82 @@
+#zen-create-new-button {
+  opacity: 0;
+}
+
+#zen-sidebar-foot-buttons {
+  display: none !important;
+}
+
+#zen-media-controls-toolbar {
+  & > toolbaritem {
+    --zen-media-control-bg: var(--zen-primary-color) !important;
+    left: 2px !important;
+    right: 2px !important;
+    bottom: 2px !important;
+    width: auto !important;
+  }
+}
+
+
+/* Single toolbar ===== */
+
+#page-action-buttons {
+  visibility: collapse;
+}
+
+#zen-sidebar-top-buttons {
+  visibility: collapse;
+}
+
+#nav-bar {
+  margin-top: 8px !important;
+  position: absolute !important;;
+}
+
+.zen-current-workspace-indicator {
+  display: none !important;
+}
+
+#titlebar {
+  margin-top: 6px;
+}
+
+
+/* Collapsed toolbar ===== */
+
+/* #nav-bar {
+  pointer-events: none;
+}
+
+#zen-appcontent-navbar-wrapper {
+  height: 8px;
+}
+
+#PanelUI-button {
+  visibility: collapse;
+}
+
+.titlebar-buttonbox-container {
+  visibility: collapse;
+}
+
+.zen-workspace-tabs-section.zen-current-workspace-indicator {
+  visibility: collapse;
+}
+
+#urlbar {
+  opacity: 0 !important;
+}
+
+#urlbar[zen-floating-urlbar="true"] {
+  pointer-events: all;
+  opacity: 1 !important;
+}
+
+#zen-sidebar-top-buttons {
+  margin-top: -30px;
+}
+
+.tab-icon-overlay {
+  visibility: collapse;
+}
+ */

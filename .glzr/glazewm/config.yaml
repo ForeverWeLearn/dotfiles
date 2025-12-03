@@ -1,0 +1,274 @@
+general:
+  startup_commands: ["shell-exec yasbc start"]
+  shutdown_commands: []
+  config_reload_commands: ["wm-redraw"]
+
+  focus_follows_cursor: false
+
+  # Whether to switch back and forth between the previously focused
+  # workspace when focusing the current workspace.
+  toggle_workspace_on_refocus: true
+
+  cursor_jump:
+    enabled: true
+
+    # - 'monitor_focus': Jump when focus changes between monitors.
+    # - 'window_focus': Jump when focus changes between windows.
+    trigger: "window_focus"
+
+  hide_method: "cloak"
+  show_all_in_taskbar: false
+
+gaps:
+  scale_with_dpi: true
+  inner_gap: "8px"
+  outer_gap:
+    top: "12px"
+    right: "12px"
+    bottom: "12px"
+    left: "12px"
+
+window_effects:
+  focused_window:
+    border:
+      enabled: false
+      color: "#8dbcff"
+    hide_title_bar:
+      enabled: false
+    corner_style:
+      enabled: false
+      # Allowed values: 'square', 'rounded', 'small_rounded'.
+      style: "square"
+    transparency:
+      enabled: false
+      opacity: "95%"
+
+  other_windows:
+    border:
+      enabled: false
+      color: "#a1a1a1"
+    hide_title_bar:
+      enabled: false
+    corner_style:
+      enabled: false
+      style: "square"
+    transparency:
+      enabled: false
+      opacity: "0%"
+
+window_behavior:
+  # Allowed values: 'tiling', 'floating'.
+  initial_state: "floating"
+
+  state_defaults:
+    floating:
+      centered: true
+      shown_on_top: false
+
+    fullscreen:
+      maximized: true
+      shown_on_top: false
+
+workspaces:
+  - name: "1"
+    display_name: ""
+  - name: "2"
+    display_name: ""
+  - name: "3"
+    display_name: ""
+  - name: "4"
+    display_name: ""
+  - name: "5"
+    display_name: ""
+  - name: "6"
+    display_name: ""
+  - name: "7"
+    display_name: ""
+  - name: "8"
+    display_name: ""
+  - name: "9"
+    display_name: ""
+
+window_rules:
+  - commands: ["ignore"]
+    match:
+      - window_process: { equals: "zebar" }
+
+      - window_title: { regex: "[Pp]icture.in.[Pp]icture" }
+        window_class: { regex: "Chrome_WidgetWin_1|MozillaDialogClass" }
+
+      - window_process: { equals: "PowerToys" }
+        window_class: { regex: 'HwndWrapper\[PowerToys\.PowerAccent.*?\]' }
+      - window_process: { equals: "PowerToys" }
+        window_title: { regex: ".*? - Peek" }
+      - window_process: { equals: "Lively" }
+        window_class: { regex: "HwndWrapper" }
+      - window_process: { equals: "EXCEL" }
+        window_class: { not_regex: "XLMAIN" }
+      - window_process: { equals: "WINWORD" }
+        window_class: { not_regex: "OpusApp" }
+      - window_process: { equals: "POWERPNT" }
+        window_class: { not_regex: "PPTFrameClass" }
+  
+  - commands: ["set-tiling"]
+    match:
+      - window_process: { equals: "Code" }
+      - window_process: { equals: "msedge" }
+      - window_process: { equals: "dopus" }
+      - window_process: { equals: "Discord" }
+
+binding_modes:
+  - name: "resize"
+    keybindings:
+      - commands: ["resize --width -2%", "position --centered"]
+        bindings: ["h", "left"]
+      - commands: ["resize --width +2%", "position --centered"]
+        bindings: ["l", "right"]
+      - commands: ["resize --height +2%", "position --centered"]
+        bindings: ["k", "up"]
+      - commands: ["resize --height -2%", "position --centered"]
+        bindings: ["j", "down"]
+      - commands: ["wm-disable-binding-mode --name resize"]
+        bindings: ["escape", "enter", "alt+r"]
+
+keybindings:
+  # Enable resize binding mode.
+  - commands: ["wm-enable-binding-mode --name resize"]
+    bindings: ["alt+r"]
+
+  # Launch Windows Terminal.
+  - commands: ["shell-exec wt"]
+    bindings: ["alt+enter"]
+
+  # Shift focus in a given direction.
+  - commands: ["focus --direction left"]
+    bindings: ["alt+h"]
+  - commands: ["focus --direction right"]
+    bindings: ["alt+l"]
+  - commands: ["focus --direction up"]
+    bindings: ["alt+k"]
+  - commands: ["focus --direction down"]
+    bindings: ["alt+j"]
+
+  # Move focused window in a given direction.
+  - commands: ["move --direction left"]
+    bindings: ["alt+shift+h"]
+  - commands: ["move --direction right"]
+    bindings: ["alt+shift+l"]
+  - commands: ["move --direction up"]
+    bindings: ["alt+shift+k"]
+  - commands: ["move --direction down"]
+    bindings: ["alt+shift+j"]
+
+  # Resize focused window by a percentage or pixel amount.
+  - commands: ["resize --width -2%", "position --centered"]
+    bindings: ["alt+u"]
+  - commands: ["resize --width +2%", "position --centered"]
+    bindings: ["alt+p"]
+  - commands: ["resize --height +2%", "position --centered"]
+    bindings: ["alt+o"]
+  - commands: ["resize --height -2%", "position --centered"]
+    bindings: ["alt+i"]
+
+  # Disables window management and all other keybindings until alt+shift+p
+  # is pressed again.
+  - commands: ["wm-toggle-pause"]
+    bindings: ["alt+shift+p"]
+
+  # Change tiling direction. This determines where new tiling windows will
+  # be inserted.
+  - commands: ["toggle-tiling-direction"]
+    bindings: ["alt+v"]
+
+  # Change focus from tiling windows -> floating -> fullscreen.
+  - commands: ["wm-cycle-focus"]
+    bindings: ["alt+space"]
+
+  # Change the focused window to be floating.
+  - commands: ["toggle-floating --centered"]
+    bindings: ["alt+f"]
+
+  # Change the focused window to be tiling.
+  - commands: ["toggle-tiling"]
+    bindings: ["alt+t"]
+
+  # Change the focused window to be fullscreen.
+  - commands: ["toggle-fullscreen"]
+    bindings: ["alt+shift+space"]
+
+  # Minimize focused window.
+  - commands: ["toggle-minimized"]
+    bindings: ["alt+m"]
+
+  # Close focused window.
+  - commands: ["close"]
+    bindings: ["alt+q"]
+
+  # Kill GlazeWM process safely.
+  - commands: ["wm-exit"]
+    bindings: ["alt+shift+q"]
+
+  # Re-evaluate configuration file and Redraw all windows.
+  - commands: ["wm-reload-config"]
+    bindings: ["alt+shift+r"]
+
+  # Focus the next/previous active workspace defined in `workspaces` config.
+  - commands: ["focus --next-active-workspace"]
+    bindings: ["alt+s"]
+  - commands: ["focus --prev-active-workspace"]
+    bindings: ["alt+a"]
+
+  # Focus the workspace that last had focus.
+  - commands: ["focus --recent-workspace"]
+    bindings: ["alt+d"]
+
+  # Change focus to a workspace defined in `workspaces` config.
+  - commands: ["focus --workspace 1"]
+    bindings: ["alt+1"]
+  - commands: ["focus --workspace 2"]
+    bindings: ["alt+2"]
+  - commands: ["focus --workspace 3"]
+    bindings: ["alt+3"]
+  - commands: ["focus --workspace 4"]
+    bindings: ["alt+4"]
+  - commands: ["focus --workspace 5"]
+    bindings: ["alt+5"]
+  - commands: ["focus --workspace 6"]
+    bindings: ["alt+6"]
+  - commands: ["focus --workspace 7"]
+    bindings: ["alt+7"]
+  - commands: ["focus --workspace 8"]
+    bindings: ["alt+8"]
+  - commands: ["focus --workspace 9"]
+    bindings: ["alt+9"]
+
+  # Move the focused window's parent workspace to a monitor in a given
+  # direction.
+  - commands: ["move-workspace --direction left"]
+    bindings: ["alt+ctrl+h"]
+  - commands: ["move-workspace --direction right"]
+    bindings: ["alt+ctrl+j"]
+  - commands: ["move-workspace --direction up"]
+    bindings: ["alt+ctrl+k"]
+  - commands: ["move-workspace --direction down"]
+    bindings: ["alt+ctrl+l"]
+
+  # Move focused window to a workspace defined in `workspaces` config.
+  - commands: ["move --workspace 1", "focus --workspace 1"]
+    bindings: ["alt+shift+1"]
+  - commands: ["move --workspace 2", "focus --workspace 2"]
+    bindings: ["alt+shift+2"]
+  - commands: ["move --workspace 3", "focus --workspace 3"]
+    bindings: ["alt+shift+3"]
+  - commands: ["move --workspace 4", "focus --workspace 4"]
+    bindings: ["alt+shift+4"]
+  - commands: ["move --workspace 5", "focus --workspace 5"]
+    bindings: ["alt+shift+5"]
+  - commands: ["move --workspace 6", "focus --workspace 6"]
+    bindings: ["alt+shift+6"]
+  - commands: ["move --workspace 7", "focus --workspace 7"]
+    bindings: ["alt+shift+7"]
+  - commands: ["move --workspace 8", "focus --workspace 8"]
+    bindings: ["alt+shift+8"]
+  - commands: ["move --workspace 9", "focus --workspace 9"]
+    bindings: ["alt+shift+9"]

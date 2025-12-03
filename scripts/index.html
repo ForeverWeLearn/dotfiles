@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHKD/Komorebi Cheatsheet</title>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel for JSX/TS -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- html2canvas for export -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+    <!-- Google Fonts: JetBrains Mono or similar for that technical feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #e5e5e5; /* Matching the light grey background */
+            color: #000000;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        /* Custom scrollbar to match theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e5e5e5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #000; 
+        }
+
+        /* Scanline effect optional, keeping it clean for now as per image */
+        
+        .retro-box {
+            border: 2px solid black;
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+
+        .retro-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000000;
+        }
+
+        /* Utility to hide elements during capture if needed */
+        .no-capture {
+            /* managed via JS usually, but class exists */
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useRef } = React;
+
+        // --- Data Parsing ---
+        // Based on the provided whkdrc
+        const cheatSheetData = [
+            {
+                category: "SYSTEM & APPS",
+                items: [
+                    { keys: ["Alt", "O"], action: "Reload Config", cmd: "whkd reload" },
+                    { keys: ["Alt", "P"], action: "Pause WM", cmd: "toggle-pause" },
+                    { keys: ["Alt", "Enter"], action: "Terminal", cmd: "wt" },
+                    { keys: ["Alt", "Shift", "C"], action: "VS Code", cmd: "code" },
+                    { keys: ["Alt", "Shift", "B"], action: "Browser", cmd: "https://" },
+                ]
+            },
+            {
+                category: "WINDOW CONTROL",
+                items: [
+                    { keys: ["Alt", "Q"], action: "Close Window", cmd: "close" },
+                    { keys: ["Alt", "F"], action: "Float", cmd: "toggle-float" },
+                    { keys: ["Alt", "Shift", "Space"], action: "Monocle", cmd: "toggle-monocle" },
+                    { keys: ["Alt", "M"], action: "Manage", cmd: "manage" },
+                ]
+            },
+            {
+                category: "FOCUS WINDOW",
+                items: [
+                    { keys: ["Alt", "H"], action: "Focus Left", cmd: "focus left" },
+                    { keys: ["Alt", "J"], action: "Focus Down", cmd: "focus down" },
+                    { keys: ["Alt", "K"], action: "Focus Up", cmd: "focus up" },
+                    { keys: ["Alt", "L"], action: "Focus Right", cmd: "focus right" },
+                ]
+            },
+            {
+                category: "MOVE WINDOW",
+                items: [
+                    { keys: ["Alt", "Shift", "H"], action: "Move Left", cmd: "move left" },
+                    { keys: ["Alt", "Shift", "J"], action: "Move Down", cmd: "move down" },
+                    { keys: ["Alt", "Shift", "K"], action: "Move Up", cmd: "move up" },
+                    { keys: ["Alt", "Shift", "L"], action: "Move Right", cmd: "move right" },
+                ]
+            },
+            {
+                category: "STACKING",
+                items: [
+                    { keys: ["Alt", "Ctrl", "←"], action: "Stack Left", cmd: "stack left" },
+                    { keys: ["Alt", "Ctrl", "↓"], action: "Stack Down", cmd: "stack down" },
+                    { keys: ["Alt", "Ctrl", "↑"], action: "Stack Up", cmd: "stack up" },
+                    { keys: ["Alt", "Ctrl", "→"], action: "Stack Right", cmd: "stack right" },
+                    { keys: ["Alt", ";"], action: "Unstack", cmd: "unstack" },
+                    { keys: ["Alt", "["], action: "Cycle Stack Prev", cmd: "cycle-stack prev" },
+                    { keys: ["Alt", "]"], action: "Cycle Stack Next", cmd: "cycle-stack next" },
+                ]
+            },
+            {
+                category: "RESIZE",
+                items: [
+                    { keys: ["Alt", "+"], action: "Width +", cmd: "resize-axis h inc" },
+                    { keys: ["Alt", "-"], action: "Width -", cmd: "resize-axis h dec" },
+                    { keys: ["Alt", "Shift", "+"], action: "Height +", cmd: "resize-axis v inc" },
+                    { keys: ["Alt", "Shift", "-"], action: "Height -", cmd: "resize-axis v dec" },
+                ]
+            },
+            {
+                category: "WORKSPACES",
+                items: [
+                    { keys: ["Alt", "1..8"], action: "Focus Workspace", cmd: "focus-workspace" },
+                    { keys: ["Alt", "A"], action: "Cycle Prev", cmd: "cycle-workspace prev" },
+                    { keys: ["Alt", "S"], action: "Cycle Next", cmd: "cycle-workspace next" },
+                    { keys: ["Alt", "Shift", "1..8"], action: "Move to Workspace", cmd: "move-to-workspace" },
+                    { keys: ["Alt", "Shift", "A"], action: "Carry Prev", cmd: "cycle-move prev" },
+                    { keys: ["Alt", "Shift", "S"], action: "Carry Next", cmd: "cycle-move next" },
+                    { keys: ["Alt", "Shift", "Tab"], action: "Cycle Layer", cmd: "toggle-workspace-layer" },
+                    { keys: ["Alt", "Shift", "F"], action: "Float Override", cmd: "toggle-float-override" },
+                ]
+            }
+        ];
+
+        // --- Components ---
+
+        const KeyCap = ({ k }) => {
+            // Map common symbols to nicer visuals if needed
+            const label = k === "return" ? "ENTER" : k.toUpperCase();
+            return (
+                <span className="inline-block border border-black bg-black text-white px-1.5 py-0.5 text-xs font-bold mr-1 min-w-[24px] text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,0.3)]">
+                    {label}
+                </span>
+            );
+        };
+
+        const ShortcutRow = ({ item }) => (
+            <div className="flex justify-between items-end mb-3 border-b border-black/10 pb-1 border-dashed">
+                <div className="flex items-center flex-wrap">
+                    {item.keys.map((k, i) => (
+                        <React.Fragment key={i}>
+                            <KeyCap k={k} />
+                            {i < item.keys.length - 1 && <span className="mr-1 font-bold text-xs">+</span>}
+                        </React.Fragment>
+                    ))}
+                </div>
+                <div className="text-right">
+                    <div className="text-sm font-bold uppercase tracking-tighter">{item.action}</div>
+                    <div className="text-[10px] opacity-60 font-normal">{item.cmd}</div>
+                </div>
+            </div>
+        );
+
+        const CategoryCard = ({ title, items }) => (
+            <div className="mb-8 break-inside-avoid">
+                <div className="flex items-center mb-4">
+                    <div className="h-2 w-4 bg-black mr-2"></div>
+                    <h2 className="text-lg font-black tracking-[0.2em] uppercase">{title}</h2>
+                    <div className="h-0.5 bg-black flex-grow ml-2"></div>
+                </div>
+                <div className="pl-2">
+                    {items.map((item, idx) => <ShortcutRow key={idx} item={item} />)}
+                </div>
+            </div>
+        );
+
+        const Decorator = () => (
+            <div className="hidden md:block fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-10">
+                 {/* Abstract geometric decoration similar to reference */}
+                 <div className="absolute top-20 left-20 w-32 h-32 border-4 border-black rounded-full border-dashed animate-spin-slow"></div>
+                 <div className="absolute top-20 left-20 w-32 h-32 border-2 border-black rounded-full skew-x-12"></div>
+                 <div className="absolute bottom-20 right-20 w-64 h-2 bg-black"></div>
+                 <div className="absolute bottom-24 right-20 w-2 h-12 bg-black"></div>
+            </div>
+        );
+
+        const App = () => {
+            const printRef = useRef(null);
+            const [isGenerating, setIsGenerating] = useState(false);
+
+            const handleExport = async () => {
+                if (!printRef.current) return;
+                setIsGenerating(true);
+                
+                try {
+                    const canvas = await html2canvas(printRef.current, {
+                        backgroundColor: "#e5e5e5",
+                        scale: 2, // higher res
+                    });
+                    
+                    const image = canvas.toDataURL("image/png");
+                    const link = document.createElement("a");
+                    link.href = image;
+                    link.download = "komorebi_whkd_cheatsheet.png";
+                    link.click();
+                } catch (err) {
+                    console.error("Export failed", err);
+                    alert("Export failed. See console.");
+                } finally {
+                    setIsGenerating(false);
+                }
+            };
+
+            return (
+                <div className="min-h-screen p-4 md:p-8 relative">
+                    <Decorator />
+                    
+                    {/* Controls */}
+                    <div className="fixed top-4 right-4 z-50 flex gap-2 no-capture">
+                        <button 
+                            onClick={handleExport}
+                            disabled={isGenerating}
+                            className="bg-black text-white px-6 py-3 font-bold uppercase tracking-widest hover:bg-gray-800 transition-all retro-box border-white"
+                        >
+                            {isGenerating ? "CAPTURING..." : "EXPORT PNG"}
+                        </button>
+                    </div>
+
+                    {/* Content Area to Capture */}
+                    <div ref={printRef} className="max-w-7xl mx-auto bg-[#e5e5e5] p-8 md:p-12 relative z-10">
+                        
+                        {/* Header */}
+                        <header className="mb-16 flex flex-col md:flex-row justify-between items-start md:items-end border-b-4 border-black pb-6">
+                            <div>
+                                <div className="flex items-center gap-4 mb-2">
+                                    <div className="w-8 h-2 bg-black"></div>
+                                    <span className="font-bold text-xs tracking-[0.3em]">CONFIGURATION_MAP</span>
+                                </div>
+                                <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none">
+                                    WHKD<br/>RC
+                                </h1>
+                            </div>
+                            <div className="text-right mt-4 md:mt-0">
+                                <div className="text-xs font-bold tracking-[0.2em] mb-1">[ KOMOREBI WINDOW MANAGER ]</div>
+                                <div className="text-xs opacity-60">Generated via Gemini • 2025</div>
+                                <div className="flex gap-1 justify-end mt-2">
+                                    <div className="w-2 h-2 bg-black"></div>
+                                    <div className="w-2 h-2 bg-black opacity-50"></div>
+                                    <div className="w-2 h-2 bg-black opacity-25"></div>
+                                </div>
+                            </div>
+                        </header>
+
+                        {/* Grid */}
+                        <div className="columns-1 md:columns-2 lg:columns-3 gap-12 space-y-12">
+                            {cheatSheetData.map((cat, idx) => (
+                                <CategoryCard key={idx} title={cat.category} items={cat.items} />
+                            ))}
+                        </div>
+
+                        {/* Footer Decoration */}
+                        <div className="mt-20 border-t-4 border-black pt-4 flex justify-between items-center">
+                            <div className="text-2xl font-black">[ 1 ]</div>
+                            <div className="flex-grow mx-4 h-1 bg-black"></div>
+                            <div className="text-xs font-bold tracking-widest">STATE: ACTIVE</div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
