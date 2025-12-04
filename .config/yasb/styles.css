@@ -28,6 +28,7 @@
 
 
     --font-primary: "JetBrainsMono NFP";
+    --font-mono: "JetBrainsMono NF";
     --font-icons: "Segoe Fluent Icons";
     --text-primary: var(--text);
     --text-secondary: rgba(205, 214, 244, 0.65);
@@ -42,8 +43,8 @@
     --font-normal: 600;
     --font-bold: 700;
     --font-bold-xl: 900;
-    --bg-taskbar: rgba(8, 8, 8, 0.4);
-    --bg-primary: rgba(8, 8, 8, 0.4);
+    --bg-taskbar: rgba(8, 8, 8, 0.65);
+    --bg-primary: rgba(8, 8, 8, 0.65);
     --bg-secondary: rgba(28, 30, 29, 1);
     --bg-hover-primary: rgba(255, 255, 255, 0.08);
     --bg-hover-secondary: rgba(255, 255, 255, 0.04);
@@ -54,14 +55,14 @@
     --color-light-grey: rgba(186, 187, 202, 0.3);
     --color-green: var(--green);
     --color-red: var(--red);
-    --radius-small: 6px;
-    --radius-normal: 8px;
-    --margin-normal: 8px;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --margin-md: 8px;
     --padding-label: 0px 2px 2px 2px;
     --padding-menu: 12px 84px 12px 14px;
     --padding-volume: 12px 14px;
     --padding-button: 4px 8px;
-    --margin-widget: 4 2;
     --padding-tooltip: 12px 24px;
 }
 
@@ -82,8 +83,9 @@
 
 .widget {
     padding: 2 8 0 8;
-    margin: var(--margin-widget);
-    border-radius: var(--radius-normal);
+    margin: 4 2;
+    border-radius: var(--radius-md);
+    background-color: var(--bg-hover-secondary);
 }
 
 .widget:hover {
@@ -98,18 +100,29 @@
 .widget .label.alt {}
 
 .icon {
-    font-size: var(--text-xl);
+    font-size: 15px;
 }
-
 
 .tooltip {
     padding: var(--padding-tooltip);
     background-color: var(--bg-secondary);
-    border-radius: var(--radius-normal);
+    border-radius: var(--radius-md);
     border: 1px solid var(--color-grey);
     color: var(--text-primary);
     font-size: var(--text-normal);
     font-weight: var(--font-bold);
+}
+
+.tooltip {
+    background-color: black;
+    border: 1px solid #36383a;
+    border-radius: 4px;
+    color: #a6adc8;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-family: 'Segoe UI';
+    font-weight: 600;
+    margin-top: 4px;
 }
 
 
@@ -118,7 +131,7 @@
 }
 
 .home-widget .icon {
-    font-size: var(--text-normal);
+    font-size: 14px;
 }
 
 .home-menu {
@@ -127,6 +140,7 @@
 
 .home-menu .menu-item {
     padding: var(--padding-menu);
+    font-family: var(--font-mono);
     font-size: var(--text-lg);
     font-weight: var(--font-bold);
 }
@@ -154,7 +168,7 @@
 
     font-size: var(--text-normal);
     border: 1px solid transparent;
-    border-radius: var(--radius-normal);
+    border-radius: var(--radius-md);
 }
 
 .audio-container .device.selected {
@@ -167,6 +181,10 @@
 }
 
 .volume-widget .progress-circle {}
+
+.volume-widget .label {
+    font-size: 16px;
+}
 
 
 .calendar {
@@ -188,7 +206,7 @@
 .calendar .calendar-table::item:selected {
     color: var(--text-primary);
     background-color: var(--bg-hover-primary);
-    border-radius: var(--radius-normal);
+    border-radius: var(--radius-md);
 }
 
 .calendar .day-label,
@@ -233,23 +251,27 @@
 }
 
 .power-menu-widget {
-    padding: 2 12 0 12;
+    padding: 2 10 0 10;
+}
+
+.power-menu-widget .label {
+    font-size: 15px;
 }
 
 .power-menu-popup {
     background-color: var(--bg-hover-fourth);
-    border-radius: var(--radius-normal);
+    border-radius: var(--radius-lg);
 }
 
 .power-menu-popup .button {
     padding: 0;
     width: 240px;
     height: 120px;
-    border-radius: var(--radius-normal);
+    border-radius: var(--radius-md);
     background-color: var(--bg-hover-secondary);
     font-family: var(--font-primary);
     color: var(--text-primary);
-    margin: var(--margin-normal);
+    margin: var(--margin-md);
 }
 
 .power-menu-popup .button.hover {
@@ -257,14 +279,14 @@
 }
 
 .power-menu-popup .button .label {
-    margin-bottom: var(--margin-normal);
+    margin-bottom: var(--margin-md);
     font-size: var(--text-lg);
     font-weight: var(--font-bold);
 }
 
 .power-menu-popup .button .icon {
     font-size: var(--text-5xl);
-    padding-top: var(--margin-normal);
+    padding-top: var(--margin-md);
 }
 
 .power-menu-popup .button.cancel .icon {
@@ -315,7 +337,9 @@
     color: var(--peach);
 }
 
-.apps-widget {}
+.apps-widget {
+    padding: 2 7 0 7;
+}
 
 .apps-widget .widget-container {}
 
@@ -333,7 +357,7 @@
 }
 
 .taskbar-widget .app-container {
-    border-radius: var(--radius-normal);
+    border-radius: var(--radius-md);
     padding: 0 7px;
     margin: 0 1px;
 }
@@ -355,14 +379,14 @@
 }
 
 .taskbar-preview {
-    border-radius: var(--radius-normal);
+    border-radius: var(--radius-md);
     background-color: var(--bg-secondary);
     border: 1px solid var(--color-grey);
 }
 
 .taskbar-preview .header {
     padding-bottom: 18px;
-    padding-top: var(--margin-normal);
+    padding-top: var(--margin-md);
 }
 
 .taskbar-preview .header .title {
@@ -376,14 +400,14 @@
 }
 
 .systray:hover {
-    background: transparent;
+    /* background: transparent; */
 }
 
 .systray .unpinned-container {
     border-radius: 0;
     padding: 0;
     background-color: var(--bg-hover-secondary);
-    border-radius: var(--radius-normal);
+    border-radius: var(--radius-md);
 }
 
 .systray .pinned-container {
@@ -391,7 +415,7 @@
 }
 
 .systray .button {
-    border-radius: var(--radius-normal);
+    border-radius: var(--radius-md);
     padding: 6;
 }
 
@@ -407,7 +431,7 @@
 }
 
 .systray .unpinned-visibility-btn {
-    border-radius: var(--radius-normal);
+    border-radius: var(--radius-md);
     padding: 6;
 }
 
@@ -422,7 +446,7 @@
     padding: 0;
     margin: 4px 4px;
     padding: 0 8px;
-    border-radius: var(--radius-normal);
+    border-radius: var(--radius-md);
     background-color: var(--bg-hover-secondary);
 }
 
@@ -479,7 +503,7 @@
 .media-menu .source {
     font-size: 11px;
     color: var(--text-secondary);
-    border-radius: var(--radius-normal);
+    border-radius: var(--radius-md);
     background-color: var(--bg-hover-primary);
     padding: var(--padding-button);
     font-weight: var(--font-normal);
@@ -608,6 +632,11 @@
 }
 
 
+.glazewm-workspaces {
+    padding: 0;
+    background-color: transparent;
+}
+
 .glazewm-workspaces:hover {
     background-color: transparent;
 }
@@ -618,7 +647,7 @@
     padding: 0 8 0 8;
     margin: 0 2 0 2;
     color: var(--text);
-    border-radius: var(--radius-normal);
+    border-radius: var(--radius-md);
 }
 
 .glazewm-workspaces .ws-btn .label {
@@ -666,20 +695,19 @@
     border: none;
 }
 
-.wifi-widget {}
+.wifi-widget {
+    padding: 1 11 0 11;
+}
 
 .wifi-widget .widget-container {}
 
 .wifi-widget .widget-container .label {}
 
-.wifi-widget .widget-container .icon {
-    font-size: 14px;
-    margin: 0 4;
-}
+.wifi-widget .widget-container .icon {}
 
 .wifi-menu {
     background-color: var(--bg-primary);
-    min-height: 640px;
+    min-height: 420px;
     min-width: 360px;
 }
 
@@ -711,7 +739,7 @@
     min-height: 48px;
     padding: 2 12;
     margin: 2 4;
-    border-radius: var(--radius-normal);
+    border-radius: var(--radius-md);
 }
 
 .wifi-menu .wifi-item:hover {
@@ -750,7 +778,7 @@
 .wifi-menu .wifi-item .connect {
     background-color: var(--bg-hover-secondary);
     padding: 4 30;
-    border-radius: var(--radius-small);
+    border-radius: var(--radius-sm);
 }
 
 .wifi-menu .wifi-item .connect:hover {
@@ -775,7 +803,7 @@
 
 .wifi-menu .footer .refresh-icon {
     font-family: var(--font-icons);
-    border-radius: var(--radius-normal);
+    border-radius: var(--radius-md);
     padding: 8px;
 }
 

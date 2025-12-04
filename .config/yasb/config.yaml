@@ -33,15 +33,15 @@ bars:
         - "glazewm_workspaces"
       right:
         - "systray"
-        - "volume"
         - "wifi"
+        - "volume"
         - "apps"
         - "power_menu"
 widgets:
   home:
     type: "yasb.home.HomeWidget"
     options:
-      label: "<span>\ue62a</span>"
+      label: "<span>󰘳</span>"
       menu_labels:
         about: "\ue66A  About This PC"
         system: "\uF423  System Settings"
@@ -67,6 +67,7 @@ widgets:
     options:
       label: "{%a %d %b %H:%M}"
       label_alt: "{%H:%M}"
+      tooltip: false
       callbacks:
         on_left: "toggle_label"
         on_right: "toggle_calendar"
@@ -84,15 +85,15 @@ widgets:
   volume:
     type: "yasb.volume.VolumeWidget"
     options:
-      label: "{icon} {level}"
+      label: "{icon}"
       # label_alt: "{volume}"
       tooltip: false
       volume_icons:
-        - "󰁀" # Icon for muted
-        - "󰀾" # Icon for 0-10% volume
-        - "󰀿" # Icon for 11-30% volume
-        - "󰀽" # Icon for 31-60% volume
-        - "" # Icon for 61-100% volume
+        - "" # Icon for muted
+        - "󰫃" # Icon for 0-10% volume
+        - "󰫄" # Icon for 11-30% volume
+        - "󰫆" # Icon for 31-60% volume
+        - "󰫈" # Icon for 61-100% volume
       callbacks:
         on_middle: "toggle_mute"
         on_right: "exec cmd.exe /c start ms-settings:sound"
@@ -106,7 +107,7 @@ widgets:
   power_menu:
     type: "yasb.power_menu.PowerMenuWidget"
     options:
-      label: ""
+      label: ""
       uptime: True
       blur: False
       blur_background: True
@@ -125,7 +126,7 @@ widgets:
       label: "{data}"
       tooltip: false
       app_list:
-        - { icon: "", launch: "quick_settings" }
+        - { icon: "󰽘", launch: "quick_settings" }
         - { icon: "", launch: "notification_center" }
   taskbar:
     type: "yasb.taskbar.TaskbarWidget"
@@ -303,11 +304,6 @@ widgets:
           "\udb82\udd25", # Icon for 41-80% strength
           "\udb82\udd28", # Icon for 81-100% strength
         ]
-      label_shadow:
-        enabled: false
-        color: "black"
-        radius: 3
-        offset: [1, 1]
       menu_config:
         blur: true
         round_corners: true
