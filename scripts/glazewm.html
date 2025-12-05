@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlazeWM Cheatsheet</title>
+
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <!-- Babel for JSX/TS -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- html2canvas for export -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            /* filter: invert(1); */
+        }
+        body {
+            background-color: #e5e5e5;
+            color: #000000;
+            font-family: 'JetBrainsMono NFP', monospace;
+            font-variant-ligatures: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #e5e5e5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #000;
+        }
+
+        .retro-box {
+            border: 2px solid black;
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+
+        .retro-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #000000;
+        }
+
+        /* Glitch text effect for title */
+        .glitch-text {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useRef } = React;
+
+        // --- Data Parsing ---
+        const cheatSheetData = [
+            {
+                category: "SYSTEM",
+                items: [
+                    { keys: ["Alt", "Shift", "Q"], action: "Close", cmd: "close window" },
+                    { keys: ["Alt", "Shift", "E"], action: "Exit", cmd: "exit wm" },
+                    { keys: ["Alt", "Shift", "P"], action: "Pause", cmd: "toggle pause" },
+                ]
+            },
+            {
+                category: "STATE",
+                items: [
+                    { keys: ["Alt", "T"], action: "Tile", cmd: "toggle tiling" },
+                    { keys: ["Alt", "F"], action: "Float", cmd: "toggle floating" },
+                    { keys: ["Alt", "M"], action: "Minimize", cmd: "toggle minimized" },
+                    { keys: ["Alt", "Shift", "Space"], action: "Fullscreen", cmd: "toggle fullscreen" },
+                ]
+            },
+            {
+                category: "FOCUS",
+                items: [
+                    { keys: ["Alt", "H|J|K|L"], action: "Focus", cmd: "focus direction" },
+                    { keys: ["Alt", "Space"], action: "Cycle", cmd: "cycle focus" },
+                ]
+            },
+            {
+                category: "MOVE",
+                items: [
+                    { keys: ["Alt", "Shift", "H|J|K|L"], action: "Move", cmd: "move direction" },
+                    { keys: ["Alt", "C"], action: "Center", cmd: "position centered" },
+                ]
+            },
+            {
+                category: "RESIZE",
+                items: [
+                    { keys: ["Alt", "U|P"], action: "Width", cmd: "resize width <delta>" },
+                    { keys: ["Alt", "I|O"], action: "Height", cmd: "resize height <delta>" },
+                ]
+            },
+            {
+                category: "WORKSPACE",
+                items: [
+                    { keys: ["Alt", "[|]"], action: "Focus", cmd: "focus <prev|next>" },
+                    { keys: ["Alt", "A|S"], action: "Focus Active", cmd: "focus active <prev|next>" },
+                    { keys: ["Alt", "D"], action: "Focus Recent", cmd: "focus recent" },
+                    { keys: ["Alt", "1..9"], action: "Focus #", cmd: "focus workspace #" },
+                ]
+            },
+            {
+                category: "MOVE TO WORKSPACE",
+                items: [
+                    { keys: ["Alt", "Shift", "[|]"], action: "Move", cmd: "move <prev|next>" },
+                    { keys: ["Alt", "Shift", "A|S"], action: "Move Active", cmd: "move active <prev|next>" },
+                    { keys: ["Alt", "Shift", "1..9"], action: "Move to #", cmd: "move workspace #" },
+                ]
+            }
+        ];
+
+        // --- Components ---
+
+        const KeyCap = ({ k }) => {
+            let label = k.toUpperCase();
+            if (k === "oem_open_brackets") label = "[";
+            if (k === "oem_close_brackets") label = "]";
+            if (k === "return" || k === "enter") label = "ENT";
+            if (k === "space") label = "SPC";
+
+            return (
+                <span className="inline-block border border-black bg-black text-white px-1.5 py-0.5 text-xs font-bold mr-1 min-w-[24px] text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,0.3)]">
+                    {label}
+                </span>
+            );
+        };
+
+        const ShortcutRow = ({ item }) => (
+            <div className="flex justify-between items-end mb-3 border-b border-black/10 pb-1 border-dashed">
+                <div className="flex items-center flex-wrap mb-1">
+                    {item.keys.map((k, i) => (
+                        <React.Fragment key={i}>
+                            <KeyCap k={k} />
+                            {i < item.keys.length - 1 && <span className="mr-1 font-bold text-xs">+</span>}
+                        </React.Fragment>
+                    ))}
+                </div>
+                <div className="text-right">
+                    <div className="text-sm font-bold uppercase tracking-tighter">{item.action}</div>
+                    <div className="text-[10px] opacity-60 font-normal truncate">{item.cmd}</div>
+                </div>
+            </div>
+        );
+
+        const CategoryCard = ({ title, items }) => (
+            <div className="mb-8 break-inside-avoid">
+                <div className="flex items-center mb-4">
+                    <div className="h-2 w-4 bg-black mr-2"></div>
+                    <h2 className="text-lg font-black tracking-[0.2em] uppercase">{title}</h2>
+                    <div className="h-0.5 bg-black flex-grow ml-2"></div>
+                </div>
+                <div className="pl-2">
+                    {items.map((item, idx) => <ShortcutRow key={idx} item={item} />)}
+                </div>
+            </div>
+        );
+
+        const Decorator = () => (
+            <div className="hidden md:block fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-10">
+                <div className="absolute top-10 left-10 w-4 h-4 bg-black"></div>
+                <div className="absolute top-10 right-10 w-4 h-4 bg-black"></div>
+                <div className="absolute bottom-10 left-10 w-4 h-4 bg-black"></div>
+                <div className="absolute bottom-10 right-10 w-4 h-4 bg-black"></div>
+
+                {/* Geometric art */}
+                <div className="absolute top-1/2 left-12 w-32 h-64 border-2 border-black -translate-y-1/2 flex flex-col justify-between p-2">
+                    <div className="w-full h-px bg-black"></div>
+                    <div className="w-full h-px bg-black"></div>
+                    <div className="w-full h-px bg-black"></div>
+                </div>
+
+                <div className="absolute top-1/2 -translate-y-1/2 right-12 w-48 h-48 border-4 border-black rounded-full border-dotted animate-spin-slow"></div>
+            </div>
+        );
+
+        const App = () => {
+            const printRef = useRef(null);
+            const [isGenerating, setIsGenerating] = useState(false);
+
+            const handleExport = async () => {
+                if (!printRef.current) return;
+                setIsGenerating(true);
+
+                try {
+                    const canvas = await html2canvas(printRef.current, {
+                        backgroundColor: "#e5e5e5",
+                        scale: 2,
+                    });
+
+                    const image = canvas.toDataURL("image/png");
+                    const link = document.createElement("a");
+                    link.href = image;
+                    link.download = "glazewm_cheatsheet.png";
+                    link.click();
+                } catch (err) {
+                    console.error("Export failed", err);
+                    alert("Export failed");
+                } finally {
+                    setIsGenerating(false);
+                }
+            };
+
+            return (
+                <div ref={printRef} className="min-h-screen p-4 md:p-8 relative">
+                    <Decorator />
+
+                    {/* Content Area */}
+                    <div className="max-w-7xl mx-auto bg-[#e5e5e5] p-8 md:p-12 relative z-10">
+
+                        {/* Header */}
+                        <header className="mb-16 flex flex-col md:flex-row justify-between items-start md:items-end border-b-4 border-black pb-6">
+                            <div>
+                                <div className="flex items-center gap-4 mb-2">
+                                    <div className="w-8 h-2 bg-black"></div>
+                                    <span className="font-bold text-xs tracking-[0.3em]">KEYBINDINGS</span>
+                                </div>
+                                <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none glitch-text">
+                                    GLAZE<br />WM
+                                </h1>
+                            </div>
+                            <div className="text-right mt-4 md:mt-0">
+                                <div className="text-xs font-bold tracking-[0.2em] mb-1">[ TILING WINDOW MANAGER ]</div>
+                                <div className="text-xs opacity-60">Config Ver. 2.0 • 2025</div>
+                                <div className="flex gap-1 justify-end mt-2">
+                                    <div className="size-3 bg-black"></div>
+                                    <div className="size-3 bg-black opacity-50"></div>
+                                    <div className="size-3 bg-black opacity-25"></div>
+                                </div>
+                            </div>
+                        </header>
+
+                        {/* Grid */}
+                        <div className="columns-1 md:columns-2 lg:columns-3 gap-12 space-y-12">
+                            {cheatSheetData.map((cat, idx) => (
+                                <CategoryCard key={idx} title={cat.category} items={cat.items} />
+                            ))}
+                        </div>
+
+                        {/* Footer Decoration */}
+                        <div className="mt-20 border-t-4 border-black pt-4 flex justify-between items-center">
+                            <div className="text-2xl font-black">[ 2 ]</div>
+                            <div className="flex-grow mx-4 h-px bg-black opacity-30"></div>
+                            <div className="text-xs font-bold tracking-widest">STATUS: OPERATIONAL</div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+
+</html>
