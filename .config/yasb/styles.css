@@ -406,12 +406,13 @@
 .systray .unpinned-container {
     border-radius: 0;
     padding: 0;
+    margin: 0 4 0 0;
     background-color: var(--bg-hover-secondary);
     border-radius: var(--radius-md);
 }
 
 .systray .pinned-container {
-    padding: 0 0 0 4;
+    padding: 0;
 }
 
 .systray .button {
@@ -697,6 +698,10 @@
 
 .wifi-widget {
     padding: 1 11 0 11;
+}
+
+.wifi-widget .icon {
+    background-color: transparent;
 }
 
 .wifi-widget .widget-container {}

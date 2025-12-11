@@ -26,12 +26,12 @@ bars:
         - "home"
         - "clock"
         - "media"
-        - "cava"
         # - "glazewm_tiling_direction"
         - "glazewm_binding_mode"
       center:
         - "glazewm_workspaces"
       right:
+        - "cava"
         - "systray"
         - "wifi"
         - "volume"
@@ -309,7 +309,7 @@ widgets:
         round_corners: true
         round_corners_type: "normal"
         border_color: "System"
-        alignment: "right"
+        alignment: "center"
         direction: "down"
         offset_top: 6
         offset_left: 0
