@@ -10,7 +10,7 @@ general:
   toggle_workspace_on_refocus: true
 
   cursor_jump:
-    enabled: true
+    enabled: false
 
     # - 'monitor_focus': Jump when focus changes between monitors.
     # - 'window_focus': Jump when focus changes between windows.
@@ -119,13 +119,13 @@ window_rules:
 binding_modes:
   - name: "resize"
     keybindings:
-      - commands: ["resize --width -2%", "position --centered"]
+      - commands: ["resize --width -2%"]
         bindings: ["h", "left"]
-      - commands: ["resize --width +2%", "position --centered"]
+      - commands: ["resize --width +2%"]
         bindings: ["l", "right"]
-      - commands: ["resize --height +2%", "position --centered"]
+      - commands: ["resize --height +2%"]
         bindings: ["k", "up"]
-      - commands: ["resize --height -2%", "position --centered"]
+      - commands: ["resize --height -2%"]
         bindings: ["j", "down"]
       - commands: ["wm-disable-binding-mode --name resize"]
         bindings: ["escape", "enter", "alt+r"]
@@ -164,13 +164,13 @@ keybindings:
     bindings: ["alt+c"]
 
   # Resize focused window by a percentage or pixel amount.
-  - commands: ["resize --width -2%", "position --centered"]
+  - commands: ["resize --width -2%"]
     bindings: ["alt+u"]
-  - commands: ["resize --width +2%", "position --centered"]
+  - commands: ["resize --width +2%"]
     bindings: ["alt+p"]
-  - commands: ["resize --height +2%", "position --centered"]
+  - commands: ["resize --height +2%"]
     bindings: ["alt+o"]
-  - commands: ["resize --height -2%", "position --centered"]
+  - commands: ["resize --height -2%"]
     bindings: ["alt+i"]
 
   # Disables window management and all other keybindings until alt+shift+p
