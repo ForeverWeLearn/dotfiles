@@ -33,9 +33,9 @@ bars:
       right:
         - "cava"
         - "systray"
-        - "wifi"
-        - "volume"
-        - "apps"
+        # - "wifi"
+        # - "volume"
+        # - "apps"
         - "power_menu"
 widgets:
   home:
@@ -65,18 +65,18 @@ widgets:
   clock:
     type: "yasb.clock.ClockWidget"
     options:
-      label: "{%a %d %b %H:%M}"
-      label_alt: "{%H:%M}"
+      label: "{%H:%M}"
+      label_alt: "{%a %d %b %H:%M}"
       tooltip: false
       callbacks:
-        on_left: "toggle_label"
-        on_right: "toggle_calendar"
+        on_left: "toggle_calendar"
+        on_right: "toggle_label"
       calendar:
         blur: True
         round_corners: True
         round_corners_type: "normal"
         border_color: "System"
-        alignment: "center"
+        alignment: "left"
         direction: "down"
         show_holidays: true
         show_week_numbers: true
@@ -114,8 +114,8 @@ widgets:
       animation_duration: 300 # Milisecond
       button_row: 3 # Number of buttons in row, min 1 max 5
       buttons:
-        restart: ["R", "Restart"]
         shutdown: ["D", "Shut Down"]
+        restart: ["R", "Restart"]
         sleep: ["S", "Sleep"]
         lock: ["L", "Lock"]
         signout: ["O", "Sign out"]
@@ -172,8 +172,7 @@ widgets:
         on_middle: "do_nothing"
         on_right: "do_nothing"
       max_field_size:
-        label: 30
-        label_alt: 30
+        label: 18
       show_thumbnail: false
       controls_only: false
       controls_left: true
@@ -191,7 +190,7 @@ widgets:
         round_corners: true
         round_corners_type: "normal"
         border_color: "system"
-        alignment: "center"
+        alignment: "left"
         direction: "down"
         offset_top: 6
         offset_left: 0
@@ -251,7 +250,7 @@ widgets:
       bars_number: 8
       bar_spacing: 2
       bar_width: 5
-      noise_reduction: 0.25
+      noise_reduction: 50
       sleep_timer: 2
       hide_empty: true
       container_padding:
@@ -295,7 +294,7 @@ widgets:
         on_right: "toggle_label"
       ethernet_label: "<span>{wifi_icon}</span>"
       ethernet_label_alt: "<span>{wifi_icon}</span>{ip_addr}"
-      ethernet_icon: "\ueba9"
+      ethernet_icon: ""
       get_exact_wifi_strength: false # Optional. Will require location access permission if true.
       wifi_icons: [
           "\udb82\udd2e", # Icon for 0% strength
@@ -309,7 +308,7 @@ widgets:
         round_corners: true
         round_corners_type: "normal"
         border_color: "System"
-        alignment: "center"
+        alignment: "right"
         direction: "down"
         offset_top: 6
         offset_left: 0
