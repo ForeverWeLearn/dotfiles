@@ -1,9 +1,9 @@
 watch_config_changes: True
-enable_logging: True
+enable_logging: False
 
 #   - V2: A more complex, feature-rich renderer. Available in v1.2.0 and above.
 #   - Legacy: A simpler, more limited renderer. Available in v0.1.0 and above.
-rendering_backend: V2
+rendering_backend: Legacy
 
 global:
   border_width: 3
@@ -14,7 +14,7 @@ global:
   #   - Round: Fully rounded corners
   #   - RoundSmall: Slightly rounded corners
   #   - Or specify any numeric value for a custom radius
-  border_radius: Round
+  border_radius: Square
 
   #   - AboveWindow: Place the border above its window
   #   - BelowWindow: Place the border below its window

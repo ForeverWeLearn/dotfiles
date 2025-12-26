@@ -23,7 +23,7 @@ bars:
       height: 36
     widgets:
       left:
-        - "home"
+        # - "home"
         - "clock"
         - "media"
         # - "glazewm_tiling_direction"
@@ -36,7 +36,7 @@ bars:
         # - "wifi"
         # - "volume"
         # - "apps"
-        - "power_menu"
+        # - "power_menu"
 widgets:
   home:
     type: "yasb.home.HomeWidget"
@@ -65,8 +65,8 @@ widgets:
   clock:
     type: "yasb.clock.ClockWidget"
     options:
-      label: "{%H:%M}"
-      label_alt: "{%a %d %b %H:%M}"
+      label: "{%a %d %b %H:%M}"
+      label_alt: "{%H:%M}"
       tooltip: false
       callbacks:
         on_left: "toggle_calendar"
@@ -108,7 +108,7 @@ widgets:
     type: "yasb.power_menu.PowerMenuWidget"
     options:
       label: ""
-      uptime: True
+      uptime: False
       blur: False
       blur_background: True
       animation_duration: 300 # Milisecond
@@ -216,7 +216,7 @@ widgets:
     options:
       offline_label: "GlazeWM Offline"
       hide_empty_workspaces: true
-      hide_if_offline: false
+      hide_if_offline: true
       enable_scroll_switching: false
       btn_shadow:
         enabled: false

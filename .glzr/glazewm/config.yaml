@@ -7,7 +7,7 @@ general:
 
   # Whether to switch back and forth between the previously focused
   # workspace when focusing the current workspace.
-  toggle_workspace_on_refocus: true
+  toggle_workspace_on_refocus: false
 
   cursor_jump:
     enabled: false
@@ -36,7 +36,7 @@ window_effects:
     hide_title_bar:
       enabled: false
     corner_style:
-      enabled: false
+      enabled: true
       # Allowed values: 'square', 'rounded', 'small_rounded'.
       style: "square"
     transparency:
@@ -50,7 +50,7 @@ window_effects:
     hide_title_bar:
       enabled: false
     corner_style:
-      enabled: false
+      enabled: true
       style: "square"
     transparency:
       enabled: false
@@ -71,50 +71,39 @@ window_behavior:
 
 workspaces:
   - name: "1"
-    display_name: ""
+    display_name: ""
   - name: "2"
     display_name: ""
   - name: "3"
     display_name: ""
   - name: "4"
-    display_name: ""
+    # display_name: ""
+    display_name: "•"
   - name: "5"
-    display_name: ""
+    # display_name: ""
+    display_name: "•"
   - name: "6"
-    display_name: ""
+    # display_name: "󰙴"
+    display_name: "•"
   - name: "7"
-    display_name: ""
+    # display_name: "󰚾"
+    display_name: "•"
   - name: "8"
-    display_name: ""
+    # display_name: "󰏰"
+    display_name: "•"
   - name: "9"
-    display_name: ""
+    display_name: ""
 
 window_rules:
   - commands: ["ignore"]
     match:
       - window_process: { equals: "zebar" }
 
-      - window_title: { regex: "[Pp]icture.in.[Pp]icture" }
-        window_class: { regex: "Chrome_WidgetWin_1|MozillaDialogClass" }
-
-      - window_process: { equals: "PowerToys" }
-        window_class: { regex: 'HwndWrapper\[PowerToys\.PowerAccent.*?\]' }
-      - window_process: { equals: "PowerToys" }
-        window_title: { regex: ".*? - Peek" }
-      - window_process: { equals: "Lively" }
-        window_class: { regex: "HwndWrapper" }
-      - window_process: { equals: "EXCEL" }
-        window_class: { not_regex: "XLMAIN" }
-      - window_process: { equals: "WINWORD" }
-        window_class: { not_regex: "OpusApp" }
-      - window_process: { equals: "POWERPNT" }
-        window_class: { not_regex: "PPTFrameClass" }
-
   - commands: ["set-tiling"]
     match:
       - window_process: { equals: "Code" }
       - window_process: { equals: "msedge" }
-      - window_process: { equals: "Discord" }
+      - window_process: { equals: "chrome" }
 
 binding_modes:
   - name: "resize"

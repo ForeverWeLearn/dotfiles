@@ -25,7 +25,6 @@ $conda\
 $time\
 [ ](fg:lavender)\
 $cmd_duration\
-$line_break\
 $character"""
 
 palette = 'catppuccin_mocha'
@@ -135,7 +134,7 @@ style = "bg:sapphire"
 format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
 
 [conda]
-symbol = "  "
+symbol = "  "
 style = "fg:crust bg:sapphire"
 format = '[$symbol$environment ]($style)'
 ignore_base = false
