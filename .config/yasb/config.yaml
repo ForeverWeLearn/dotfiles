@@ -26,12 +26,12 @@ bars:
         # - "home"
         - "clock"
         - "media"
+        - "cava"
         # - "glazewm_tiling_direction"
-        - "glazewm_binding_mode"
       center:
         - "glazewm_workspaces"
       right:
-        - "cava"
+        # - "glazewm_binding_mode"
         - "systray"
         # - "wifi"
         # - "volume"
@@ -172,7 +172,7 @@ widgets:
         on_middle: "do_nothing"
         on_right: "do_nothing"
       max_field_size:
-        label: 18
+        label: 12
       show_thumbnail: false
       controls_only: false
       controls_left: true
@@ -207,7 +207,7 @@ widgets:
         next_track: "\ue893"
       scrolling_label:
         enabled: false
-        update_interval_ms: 13
+        update_interval_ms: 50
         style: "left" # can be "left", "right", "bounce", "bounce-ease"
         separator: "    |    "
         label_padding: 10
@@ -251,7 +251,7 @@ widgets:
       bar_spacing: 2
       bar_width: 5
       noise_reduction: 50
-      sleep_timer: 2
+      sleep_timer: 3
       hide_empty: true
       container_padding:
         top: 0

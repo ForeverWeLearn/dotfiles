@@ -25,6 +25,7 @@ $conda\
 $time\
 [ ](fg:lavender)\
 $cmd_duration\
+$line_break\
 $character"""
 
 palette = 'catppuccin_mocha'
@@ -137,7 +138,7 @@ format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
 symbol = "  "
 style = "fg:crust bg:sapphire"
 format = '[$symbol$environment ]($style)'
-ignore_base = false
+ignore_base = true
 
 [time]
 disabled = false
@@ -146,7 +147,7 @@ style = "bg:lavender"
 format = '[[ $time ](fg:crust bg:lavender)]($style)'
 
 [line_break]
-disabled = false
+disabled = true
 
 [character]
 disabled = false
@@ -158,11 +159,11 @@ vimcmd_replace_symbol = '[❮](bold fg:lavender)'
 vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 
 [cmd_duration]
-show_milliseconds = true
-format = " in $duration "
+show_milliseconds = false
+format = " $duration "
 style = "bg:lavender"
 disabled = false
-show_notifications = true
+show_notifications = false
 min_time_to_notify = 45000
 
 [palettes.catppuccin_mocha]
