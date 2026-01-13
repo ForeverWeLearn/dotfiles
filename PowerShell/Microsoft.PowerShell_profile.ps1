@@ -2,10 +2,9 @@ Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init --cmd cd --hook prompt powershell | Out-String) })
 
 Set-PSReadlineKeyHandler -Key Tab -Function AcceptNextSuggestionWord
-
-# Set-Alias -Name ls -Value 'eza.exe'
-function Invoke-Eza { eza.exe -l --icons --group-directories-first $args }
 Set-Alias -Name ls -Value Invoke-Eza
+
+function Invoke-Eza { eza.exe -l --icons --group-directories-first $args }
 
 function y {
     $tmp = (New-TemporaryFile).FullName

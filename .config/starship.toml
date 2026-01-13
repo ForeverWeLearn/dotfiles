@@ -1,15 +1,10 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](red)\
-$os\
-$username\
-[](bg:peach fg:red)\
-$directory\
-[](bg:yellow fg:peach)\
-$git_branch\
-$git_status\
-[](fg:yellow bg:green)\
+[](red)$os$username[](red) \
+[](peach)$directory[](peach) \
+[](yellow)$git_branch$git_status[](yellow) \
+[](green)\
 $c\
 $rust\
 $golang\
@@ -19,54 +14,39 @@ $java\
 $kotlin\
 $haskell\
 $python\
-[](fg:green bg:sapphire)\
-$conda\
-[](fg:sapphire bg:lavender)\
-$time\
-[ ](fg:lavender)\
-$cmd_duration\
+[](green) \
+[](sapphire)$conda[](sapphire) \
+[](lavender)$cmd_duration[](lavender) \
+$fill\
+[](mauve)$time[](mauve)\
 $line_break\
 $character"""
 
 palette = 'catppuccin_mocha'
 
+[fill]
+symbol = ' '
+
 [os]
 disabled = false
-style = "bg:red fg:crust"
+style = "bg:red fg:base"
+format = '[ $symbol]($style)'
 
 [os.symbols]
-Windows = ""
-Ubuntu = "󰕈"
-SUSE = ""
-Raspbian = "󰐿"
-Mint = "󰣭"
-Macos = "󰀵"
-Manjaro = ""
-Linux = "󰌽"
-Gentoo = "󰣨"
-Fedora = "󰣛"
-Alpine = ""
-Amazon = ""
-Android = ""
-AOSC = ""
-Arch = "󰣇"
-Artix = "󰣇"
-CentOS = ""
-Debian = "󰣚"
-Redhat = "󱄛"
-RedHatEnterprise = "󱄛"
+Windows = "󰣇"
+Linux = "󰣇"
 
 [username]
-show_always = true
-style_user = "bg:red fg:crust"
-style_root = "bg:red fg:crust"
-format = '[ $user]($style)'
+show_always = false
+style_user = "bg:red fg:base"
+style_root = "bg:red fg:base"
+format = '[ $user ]($style)'
+aliases = { "Administrator" = "fowel" }
 
 [directory]
-style = "bg:peach fg:crust"
+style = "bg:peach fg:base"
 format = "[ $path ]($style)"
-truncation_length = 3
-truncation_symbol = "…/"
+truncation_length = 6
 
 [directory.substitutions]
 "Documents" = "󰈙 "
@@ -77,77 +57,77 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:yellow"
-format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
+style = "fg:base bg:yellow"
+format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:yellow"
-format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
+style = "fg:base bg:yellow"
+format = '[($all_status$ahead_behind )]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "fg:base bg:green"
+format = '[ $symbol( $version) ]($style)'
 
 [c]
 symbol = " "
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "fg:base bg:green"
+format = '[ $symbol( $version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "fg:base bg:green"
+format = '[ $symbol( $version) ]($style)'
 
 [golang]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "fg:base bg:green"
+format = '[ $symbol( $version) ]($style)'
 
 [php]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "fg:base bg:green"
+format = '[ $symbol( $version) ]($style)'
 
 [java]
-symbol = " "
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+symbol = ""
+style = "fg:base bg:green"
+format = '[ $symbol( $version) ]($style)'
 
 [kotlin]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "fg:base bg:green"
+format = '[ $symbol( $version) ]($style)'
 
 [haskell]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "fg:base bg:green"
+format = '[ $symbol( $version) ]($style)'
 
 [python]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:crust bg:green)]($style)'
+style = "fg:base bg:green"
+format = '[ $symbol( $version)(\(#$virtualenv\)) ]($style)'
 
 [docker_context]
 symbol = ""
-style = "bg:sapphire"
-format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
+style = "fg:base bg:sapphire"
+format = '[ $symbol( $context) ]($style)'
 
 [conda]
 symbol = "  "
-style = "fg:crust bg:sapphire"
+style = "fg:base bg:sapphire"
 format = '[$symbol$environment ]($style)'
 ignore_base = true
 
 [time]
 disabled = false
-time_format = "%R"
-style = "bg:lavender"
-format = '[[ $time ](fg:crust bg:lavender)]($style)'
+time_format = "%H•%M"
+style = "fg:base bg:mauve"
+format = '[ $time ]($style)'
 
 [line_break]
-disabled = true
+disabled = false
 
 [character]
 disabled = false
@@ -159,9 +139,9 @@ vimcmd_replace_symbol = '[❮](bold fg:lavender)'
 vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 
 [cmd_duration]
-show_milliseconds = false
-format = " $duration "
-style = "bg:lavender"
+show_milliseconds = true
+style = "fg:base bg:lavender"
+format = "[  $duration ]($style)"
 disabled = false
 show_notifications = false
 min_time_to_notify = 45000

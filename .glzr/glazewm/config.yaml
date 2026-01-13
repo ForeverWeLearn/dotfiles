@@ -21,18 +21,18 @@ general:
 
 gaps:
   scale_with_dpi: true
-  inner_gap: "8px"
+  inner_gap: "12px"
   outer_gap:
-    top: "12px"
-    right: "12px"
-    bottom: "12px"
-    left: "12px"
+    top: "20px"
+    right: "20px"
+    bottom: "20px"
+    left: "20px"
 
 window_effects:
   focused_window:
     border:
       enabled: false
-      color: "#8dbcff"
+      color: "#c6a0f6"
     hide_title_bar:
       enabled: false
     corner_style:
@@ -46,7 +46,7 @@ window_effects:
   other_windows:
     border:
       enabled: false
-      color: "#a1a1a1"
+      color: "#6e738d"
     hide_title_bar:
       enabled: false
     corner_style:
@@ -77,20 +77,15 @@ workspaces:
   - name: "3"
     display_name: ""
   - name: "4"
-    # display_name: ""
-    display_name: "•"
+    display_name: ""
   - name: "5"
-    # display_name: ""
-    display_name: "•"
+    display_name: ""
   - name: "6"
-    # display_name: "󰙴"
-    display_name: "•"
+    display_name: "󰙴"
   - name: "7"
-    # display_name: "󰚾"
-    display_name: "•"
+    display_name: "󰚾"
   - name: "8"
-    # display_name: "󰏰"
-    display_name: "•"
+    display_name: "󰏰"
   - name: "9"
     display_name: ""
 
@@ -159,7 +154,7 @@ keybindings:
     bindings: ["alt+space"]
 
   # Change the focused window to be floating.
-  - commands: ["toggle-floating --centered"]
+  - commands: ["toggle-floating"]
     bindings: ["alt+f"]
 
   # Change the focused window to be tiling.
