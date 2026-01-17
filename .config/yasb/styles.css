@@ -651,16 +651,12 @@
 }
 
 .glazewm-workspaces .ws-btn .label {
-  padding: 0 0 0 4;
+  padding: 0 5 0 4;
 }
 
 .glazewm-workspaces .ws-btn .icon {
-  margin: 0 2;
+  margin: 0 2 0 0;
   padding: 0 2;
-}
-
-.glazewm-workspaces .ws-btn .icon-1 {
-  margin-left: 4;
 }
 
 .glazewm-workspaces .ws-btn.active_populated {
