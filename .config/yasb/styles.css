@@ -87,7 +87,8 @@
   padding: 2 8 0 8;
   margin: 4 2;
   border-radius: var(--radius-md);
-  background-color: var(--bg-hover-secondary);
+  /* background-color: var(--bg-hover-secondary); */
+  background-color: transparent;
 }
 
 .widget:hover {
@@ -449,7 +450,7 @@
   margin: 4px 4px;
   padding: 0 8px;
   border-radius: var(--radius-md);
-  background-color: var(--bg-hover-secondary);
+  /* background-color: var(--bg-hover-secondary); */
 }
 
 .media-widget .label {
@@ -622,6 +623,10 @@
 
 .media-menu .app-volume-container .unmute-button {
   color: var(--text-secondary);
+}
+
+.cava-widget:hover {
+  background-color: transparent;
 }
 
 .glazewm-binding-mode {

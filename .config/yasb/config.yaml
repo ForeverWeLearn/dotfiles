@@ -25,11 +25,11 @@ bars:
       left:
         # - "home"
         - "clock"
-        - "media"
-        - "cava"
         # - "glazewm_tiling_direction"
       center:
-        - "glazewm_workspaces"
+        # - "media"
+        - "cava"
+        # - "glazewm_workspaces"
       right:
         # - "glazewm_binding_mode"
         - "systray"
@@ -172,11 +172,11 @@ widgets:
         on_middle: "do_nothing"
         on_right: "do_nothing"
       max_field_size:
-        label: 12
+        label: 32
       show_thumbnail: false
       controls_only: false
       controls_left: true
-      controls_hide: false
+      controls_hide: true
       thumbnail_alpha: 80
       thumbnail_padding: 8
       thumbnail_corner_radius: 16
@@ -190,7 +190,7 @@ widgets:
         round_corners: true
         round_corners_type: "normal"
         border_color: "system"
-        alignment: "left"
+        alignment: "center"
         direction: "down"
         offset_top: 6
         offset_left: 0
@@ -206,7 +206,7 @@ widgets:
         prev_track: "\ue892"
         next_track: "\ue893"
       scrolling_label:
-        enabled: false
+        enabled: true
         update_interval_ms: 50
         style: "left" # can be "left", "right", "bounce", "bounce-ease"
         separator: "    |    "
@@ -242,7 +242,7 @@ widgets:
     type: "yasb.cava.CavaWidget"
     options:
       bar_height: 12
-      gradient: 1
+      gradient: 0
       reverse: 0
       foreground: "#cba6f7"
       gradient_color_1: "#cba6f7"
