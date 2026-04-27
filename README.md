@@ -1,17 +1,29 @@
 <div align="center">
-    <pre>VS Code</pre>
-    <sup><code>😼 Catppuccin</code> • <code>😎 Sleak</code> • <code>🍵 Chill</code></sup>
+    <h1>• 𝖉𝖔𝖙𝖋𝖎𝖑𝖊𝖘 •</h1>
+    <br/>
+    <br/>
+    <pre>
+    &nbsp;
+    <strong>VS Code</strong>
     <img src="imgs/vscode.png" />
+    <sup>😼 Catppuccin • 😎 Sleak • 🍵 Chill</sup>
+    </pre>
     <br/>
     <br/>
     <br/>
-    <pre>Zen Browser</pre>
-    <sup><code>✨ Minimal</code> • <code>🤯 Extreme Minimal</code> • <code>🙂 Nothing</code></sup>
+    <pre>
+    &nbsp;
+    <strong>Zen Browser</strong>
     <img src="imgs/zen.png" />
+    <sup>✨ Minimal • 🤯 Extreme Minimal • 🙂 Nothing</sup>
+    </pre>
     <br/>
     <br/>
     <br/>
-    <pre>Windows Terminal</pre>
-    <sup><code>😼 Catppuccin</code> • <code>💻 Single tab</code> • <code>👓 Acrylic background</code></sup>
+    <pre>
+    &nbsp;
+    <strong>Windows Terminal</strong>
     <img src="imgs/wt.png" />
+    <sup>😼 Catppuccin • 💻 Single tab • 👓 Acrylic background</sup>
+    </pre>
 </div>
