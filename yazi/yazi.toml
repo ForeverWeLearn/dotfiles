@@ -2,7 +2,14 @@
 ratio = [1, 2, 2]
 sort_by = "extension"
 linemode = "size"
-show_hidden = true
+show_hidden = false
+
+
+[manager]
+prepend_hidden = [
+    "node_modules",
+    ".git",
+]
 
 
 [preview]

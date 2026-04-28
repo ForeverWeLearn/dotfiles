@@ -29,7 +29,7 @@
 
 !qimgv/qimgv.conf
 
-!starship/*
+!starship/starship.toml
 
 !tacky-borders/config.yaml
 
