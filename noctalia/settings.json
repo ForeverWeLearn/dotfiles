@@ -114,6 +114,12 @@
             ],
             "right": [
                 {
+                    "id": "plugin:privacy-indicator"
+                },
+                {
+                    "id": "plugin:screen-recorder"
+                },
+                {
                     "displayMode": "onhover",
                     "iconColor": "none",
                     "id": "Network",
