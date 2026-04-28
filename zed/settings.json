@@ -1,4 +1,9 @@
 {
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
   "autosave": {
     "after_delay": {
       "milliseconds": 1000
@@ -6,7 +11,7 @@
   },
   "base_keymap": "VSCode",
   "bottom_dock_layout": "contained",
-  "buffer_font_family": "JetBrainsMono NF",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_size": 18.0,
   "buffer_font_weight": 500.0,
   "collaboration_panel": {
@@ -65,7 +70,7 @@
     "button": false,
     "cursor_shape": "bar",
     "font_fallbacks": ["JetBrains Mono"],
-    "font_family": "JetBrainsMono NF",
+    "font_family": "JetBrainsMono Nerd Font",
     "font_size": 16,
     "font_weight": 600,
     "line_height": "comfortable"
