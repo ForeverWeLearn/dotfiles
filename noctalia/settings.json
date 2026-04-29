@@ -50,12 +50,12 @@
         "density": "spacious",
         "displayMode": "auto_hide",
         "enableExclusionZoneInset": true,
-        "fontScale": 1,
+        "fontScale": 0.9,
         "frameRadius": 16,
         "frameThickness": 12,
         "hideOnOverview": false,
-        "marginHorizontal": 12,
-        "marginVertical": 196,
+        "marginHorizontal": 500,
+        "marginVertical": 12,
         "middleClickAction": "none",
         "middleClickCommand": "",
         "middleClickFollowMouse": false,
@@ -65,11 +65,11 @@
         "mouseWheelAction": "none",
         "mouseWheelWrap": true,
         "outerCorners": true,
-        "position": "left",
+        "position": "top",
         "reverseScroll": false,
         "rightClickAction": "controlCenter",
         "rightClickCommand": "",
-        "rightClickFollowMouse": true,
+        "rightClickFollowMouse": false,
         "screenOverrides": [
         ],
         "showCapsule": false,
@@ -79,40 +79,6 @@
         "widgetSpacing": 6,
         "widgets": {
             "center": [
-                {
-                    "characterCount": 2,
-                    "colorizeIcons": true,
-                    "emptyColor": "primary",
-                    "enableScrollWheel": true,
-                    "focusedColor": "primary",
-                    "followFocusedScreen": false,
-                    "fontWeight": "bold",
-                    "groupedBorderOpacity": 0.5,
-                    "hideUnoccupied": false,
-                    "iconScale": 0.75,
-                    "id": "Workspace",
-                    "labelMode": "none",
-                    "occupiedColor": "primary",
-                    "pillSize": 0.6,
-                    "showApplications": false,
-                    "showApplicationsHover": true,
-                    "showBadge": true,
-                    "showLabelsOnlyWhenOccupied": false,
-                    "unfocusedIconsOpacity": 0.75
-                }
-            ],
-            "left": [
-                {
-                    "clockColor": "none",
-                    "customFont": "JetBrains Mono ExtraBold",
-                    "formatHorizontal": "HH:mm ddd, MMM dd",
-                    "formatVertical": "HH mm",
-                    "id": "Clock",
-                    "tooltipFormat": "HH:mm ddd dd MMM yyyy",
-                    "useCustomFont": true
-                }
-            ],
-            "right": [
                 {
                     "defaultSettings": {
                         "activeColor": "primary",
@@ -125,7 +91,9 @@
                         "removeMargins": false
                     },
                     "id": "plugin:privacy-indicator"
-                },
+                }
+            ],
+            "left": [
                 {
                     "defaultSettings": {
                         "audioCodec": "opus",
@@ -151,7 +119,18 @@
                     "id": "plugin:screen-recorder"
                 },
                 {
-                    "displayMode": "onhover",
+                    "clockColor": "none",
+                    "customFont": "JetBrains Mono ExtraBold",
+                    "formatHorizontal": "HH·mm",
+                    "formatVertical": "HH mm",
+                    "id": "Clock",
+                    "tooltipFormat": "HH:mm ddd dd MMM yyyy",
+                    "useCustomFont": true
+                }
+            ],
+            "right": [
+                {
+                    "displayMode": "alwaysHide",
                     "iconColor": "none",
                     "id": "Network",
                     "textColor": "none"
@@ -216,12 +195,12 @@
                 "id": "weather-card"
             },
             {
-                "enabled": false,
+                "enabled": true,
                 "id": "media-sysmon-card"
             }
         ],
         "diskPath": "/",
-        "position": "close_to_bar_button",
+        "position": "top_center",
         "shortcuts": {
             "left": [
                 {
@@ -299,7 +278,7 @@
         "clockStyle": "digital",
         "compactLockScreen": false,
         "dimmerOpacity": 0,
-        "enableBlurBehind": true,
+        "enableBlurBehind": false,
         "enableLockScreenCountdown": false,
         "enableLockScreenMediaControls": false,
         "enableShadows": true,
@@ -580,8 +559,8 @@
         "fontFixedScale": 1,
         "panelBackgroundOpacity": 1,
         "panelsAttachedToBar": true,
-        "scrollbarAlwaysVisible": true,
-        "settingsPanelMode": "attached",
+        "scrollbarAlwaysVisible": false,
+        "settingsPanelMode": "window",
         "settingsPanelSideBarCardStyle": false,
         "tooltipsEnabled": false,
         "translucentWidgets": false
