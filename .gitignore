@@ -40,6 +40,8 @@
 !vesktop/settings/quickCss.css
 !vesktop/themes/*.css
 
+!vimium/vimium-options.json
+
 !vscode/settings.json
 !vscode/vscode.css
 

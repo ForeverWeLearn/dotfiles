@@ -1,0 +1,11 @@
+{
+  "exclusionRules": [],
+  "hideHud": true,
+  "hideUpdateNotifications": true,
+  "ignoreKeyboardLayout": true,
+  "keyMappings": "unmapAll\n\nmap g LinkHints.activateMode\n\nmap j scrollDown\nmap k scrollUp\nmap h goBack\nmap l goForward\n\nmap i focusInput\n\nmap r reload\nmap R reload hard",
+  "linkHintCharacters": "qweruiopasdfhjkl",
+  "searchEngines": "",
+  "settingsVersion": "2.4.2",
+  "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n  background: #363636;\n  box-shadow: 1px 1px 3px #18181899;\n  border: none;\n  border-radius: 3px;\n  padding: 2px 2px 0 3px;\n\n  & span {\n    color: #f0f0f0;\n    font-weight: 900;\n    font-size: 10px;\n    font-family: monospace;\n    text-shadow: none;\n    letter-spacing: 1px;\n  }\n}\n\ndiv#hud-container {\n  visibility: collapse;\n}"
+}
