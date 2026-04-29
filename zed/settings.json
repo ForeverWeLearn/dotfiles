@@ -14,20 +14,23 @@
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_size": 18.0,
   "buffer_font_weight": 500.0,
+  "cli_default_open_behavior": "new_window",
   "collaboration_panel": {
-    "default_width": 420.0,
     "button": false,
+    "default_width": 420.0,
     "dock": "left"
   },
   "debugger": {
     "button": false
   },
+  "diff_view_style": "split",
   "disable_ai": true,
   "git_panel": {
-    "default_width": 420.0,
     "button": false,
+    "default_width": 420.0,
     "dock": "left"
   },
+  "helix_mode": true,
   "icon_theme": "Catppuccin Mocha",
   "max_tabs": 5,
   "minimap": {
@@ -38,13 +41,13 @@
     "thumb_border": "none"
   },
   "outline_panel": {
-    "default_width": 420.0,
     "button": false,
+    "default_width": 420.0,
     "dock": "left"
   },
   "project_panel": {
-    "default_width": 420.0,
     "button": false,
+    "default_width": 420.0,
     "dock": "left"
   },
   "search": {
@@ -55,7 +58,8 @@
   },
   "status_bar": {
     "active_language_button": true,
-    "cursor_position_button": true
+    "cursor_position_button": true,
+    "show_active_file": false
   },
   "tab_bar": {
     "show": false,
@@ -99,6 +103,7 @@
   },
   "title_bar": {
     "show_branch_name": true,
+    "show_branch_status_icon": false,
     "show_menus": false,
     "show_onboarding_banner": false,
     "show_project_items": false,
