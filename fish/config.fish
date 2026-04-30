@@ -5,7 +5,6 @@ zoxide init fish | source
 
 alias cls="clear"
 alias pls="sudo -E"
-alias hx="helix"
 
 function fish_greeting
     # catnap

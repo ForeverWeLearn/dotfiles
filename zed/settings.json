@@ -118,7 +118,7 @@
     "agent_review": false,
     "quick_actions": false
   },
-  "ui_font_family": "JetBrains Mono",
+  "ui_font_family": "JetBrainsMono Nerd Font",
   "ui_font_size": 18.0,
   "ui_font_weight": 500.0,
   "vim_mode": false
