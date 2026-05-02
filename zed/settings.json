@@ -10,16 +10,18 @@
     }
   },
   "base_keymap": "VSCode",
-  "bottom_dock_layout": "contained",
+  "bottom_dock_layout": "full",
   "buffer_font_family": "JetBrainsMono Nerd Font",
-  "buffer_font_size": 18.0,
+  "buffer_font_size": 16.0,
   "buffer_font_weight": 500.0,
+  "buffer_line_height": "comfortable",
   "cli_default_open_behavior": "new_window",
   "collaboration_panel": {
     "button": false,
-    "default_width": 420.0,
+    "default_width": 430.0,
     "dock": "left"
   },
+  "colorize_brackets": true,
   "debugger": {
     "button": false
   },
@@ -27,7 +29,7 @@
   "disable_ai": true,
   "git_panel": {
     "button": false,
-    "default_width": 420.0,
+    "default_width": 430.0,
     "dock": "left"
   },
   "helix_mode": true,
@@ -38,23 +40,29 @@
   "max_tabs": 5,
   "minimap": {
     "current_line_highlight": "all",
-    "max_width_columns": 200,
-    "show": "always",
+    "max_width_columns": 160,
+    "show": "auto",
     "thumb": "hover",
     "thumb_border": "none"
   },
   "outline_panel": {
     "button": false,
-    "default_width": 420.0,
+    "default_width": 430.0,
     "dock": "left"
   },
   "preferred_line_length": 100,
   "project_panel": {
     "button": false,
-    "default_width": 420.0,
+    "default_width": 430.0,
     "dock": "left"
   },
   "relative_line_numbers": "enabled",
+  "remove_trailing_whitespace_on_save": true,
+  "scrollbar": {
+    "axes": {
+      "horizontal": false
+    }
+  },
   "search": {
     "button": false
   },
@@ -67,6 +75,9 @@
     "active_language_button": true,
     "cursor_position_button": true,
     "show_active_file": false
+  },
+  "sticky_scroll": {
+    "enabled": true
   },
   "tab_bar": {
     "show": false,
@@ -84,12 +95,10 @@
   "terminal": {
     "button": false,
     "cursor_shape": "bar",
-    "default_height": 400.0,
-    "font_fallbacks": [
-      "JetBrains Mono"
-    ],
+    "default_height": 410.0,
+    "font_fallbacks": ["JetBrains Mono"],
     "font_family": "JetBrainsMono Nerd Font",
-    "font_size": 16,
+    "font_size": 15,
     "font_weight": 600,
     "line_height": "comfortable"
   },
@@ -113,7 +122,7 @@
   },
   "title_bar": {
     "show_branch_name": true,
-    "show_branch_status_icon": false,
+    "show_branch_status_icon": true,
     "show_menus": false,
     "show_onboarding_banner": false,
     "show_project_items": false,
@@ -126,7 +135,9 @@
     "quick_actions": false
   },
   "ui_font_family": "JetBrainsMono Nerd Font",
-  "ui_font_size": 18.0,
+  "ui_font_size": 16.0,
   "ui_font_weight": 500.0,
-  "vim_mode": false
+  "vim_mode": false,
+  "window_decorations": "server",
+  "zoomed_padding": false
 }
